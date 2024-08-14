@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Weekend Day</title>
+</head>
+<body>
+    <h1>Find Next Weekend Days</h1>
+    <button id="getWeekendButton">Get Weekend Days</button>
+    <div id="output"></div>
+
+    <script>
+        function getWeekendDay(date) {
+            // Convert input to a Date object if it isn't already
+            const inputDate = new Date(date);
+
+            // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+            const dayOfWeek = inputDate.getDay();
+
+            // Calculate the next Saturday and Sunday
+            const daysUntilSaturday = (6 - dayOfWeek + 7) % 7;
+            const daysUntilSunday = (0 - dayOfWeek + 7) % 7;
+
+            // Get the next Saturday and Sunday dates
+            const nextSaturday = new Date(inputDate);
+            nextSaturday.setDate(inputDate.getDate() + daysUntilSaturday);
+
+            const nextSunday = new Date(inputDate);
+            nextSunday.setDate(inputDate.getDate() + daysUntilSunday);
+
+            // Return the weekend days
+            return {
+                saturday: nextSaturday,
+                sunday: nextSunday
+            };
+        }
+
+        document.getElementById('getWeekendButton').addEventListener('click', function() {
+            const userInput = prompt('Please enter a date (YYYY-MM-DD):');
+            if (userInput) {
+                const weekendDays = getWeekendDay(userInput);
+                const outputDiv = document.getElementById('output');
+                outputDiv.innerHTML = `<p>Next Saturday: ${weekendDays.saturday.toDateString()}</p>
+                                       <p>Next Sunday: ${weekendDays.sunday.toDateString()}</p>`;
+            } else {
+                alert('Please enter a valid date.');
+            }
+        });
+    </script>
+</body>
+</html>

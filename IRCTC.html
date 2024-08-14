@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRCTC Improved</title>
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header {
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+    display: inline-block;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    float: right;
+}
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+main {
+    padding: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="text"],
+input[type="password"],
+input[type="date"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
+}
+footer {
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>IRCTC Improved</h1>
+        <nav>
+            <ul>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#search">Search Trains</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+<main>
+        <section id="login">
+            <h2>Login</h2>
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </section>
+        <section id="search">
+            <h2>Search Trains</h2>
+            <form action="/search" method="get">
+                <div class="form-group">
+                    <label for="from">From:</label>
+                    <input type="text" id="from" name="from" required>
+                </div>
+                <div class="form-group">
+                    <label for="to">To:</label>
+                    <input type="text" id="to" name="to" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <button type="submit">Search</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 IRCTC Improved. All rights reserved.</p>
+    </footer>
+</body>
+</html>

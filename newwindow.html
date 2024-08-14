@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open New Window Example</title>
+</head>
+<body>
+    <button onclick="openNewWindow()">Open New Window</button>
+
+    <script>
+        function openNewWindow() {
+            var newWindow = window.open(
+                "https://www.example.com", // URL to be loaded
+                "exampleWindow",           // Name of the new window
+                "width=200,height=200,location=yes" // Window features
+            );
+
+            // Ensure the new window is opened and not null
+            if (newWindow) {
+                // Code to resize the window after 3 seconds
+                setTimeout(function() {
+                    newWindow.resizeTo(400, 400); // Resizing to 400x400
+                }, 3000);
+            } else {
+                alert("Failed to open the new window. Please check your browser settings.");
+            }
+        }
+    </script>
+</body>
+</html>

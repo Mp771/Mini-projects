@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .calculator {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-screen {
+            width: 100%;
+            height: 80px;
+            border: none;
+            background-color: #252525;
+            color: white;
+            font-size: 2.5rem;
+            text-align: right;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .calculator-keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        button {
+            height: 80px;
+            font-size: 1.5rem;
+            border: 1px solid #ccc;
+            background-color: lightblue;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #f4f4f4;
+        }
+
+        .operator {
+            background-color: #f9a825;
+            color: white;
+        }
+
+        .operator:hover {
+            background-color: #fbc02d;
+        }
+
+        .equal-sign {
+            background-color: #ff7043;
+            color: white;
+            grid-column: span 2;
+        }
+
+        .equal-sign:hover {
+            background-color: #ff8a65;
+        }
+
+        .all-clear {
+            background-color: #d32f2f;
+            color: white;
+        }
+
+        .all-clear:hover {
+            background-color: #e57373;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="calculator-screen" id="calculator-screen" disabled>
+        
+        <div class="calculator-keys">
+            <button type="button" class="operator" value="+">+</button>
+            <button type="button" class="operator" value="-">-</button>
+            <button type="button" class="operator" value="*">&times;</button>
+            <button type="button" class="operator" value="/">&divide;</button>
+
+            <button type="button" value="7">7</button>
+            <button type="button" value="8">8</button>
+            <button type="button" value="9">9</button>
+
+            <button type="button" value="4">4</button>
+            <button type="button" value="5">5</button>
+            <button type="button" value="6">6</button>
+
+            <button type="button" value="1">1</button>
+            <button type="button" value="2">2</button>
+            <button type="button" value="3">3</button>
+
+            <button type="button" value="0">0</button>
+            <button type="button" value=".">.</button>
+            <button type="button" class="all-clear" value="all-clear">AC</button>
+
+            <button type="button" class="equal-sign" value="=">=</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const screen = document.getElementById('calculator-screen');
+            const keys = document.querySelector('.calculator-keys');
+            
+            let currentInput = '';
+            let operator = '';
+            let previousInput = '';
+
+            keys.addEventListener('click', function(event) {
+                const { target } = event;
+                const { value } = target;
+
+                if (!target.matches('button')) {
+                    return;
+                }
+
+                switch (value) {
+                    case '+':
+                    case '-':
+                    case '*':
+                    case '/':
+                        handleOperator(value);
+                        break;
+                    case '=':
+                        calculate();
+                        break;
+                    case 'all-clear':
+                        clear();
+                        break;
+                    case '.':
+                        inputDecimal(value);
+                        break;
+                    default:
+                        if (Number.isInteger(parseFloat(value))) {
+                            inputNumber(value);
+                        }
+                }
+
+                updateScreen();
+            });
+
+            function handleOperator(nextOperator) {
+                if (operator && currentInput === '') {
+                    operator = nextOperator;
+                    return;
+                }
+
+                if (previousInput === '') {
+                    previousInput = currentInput;
+                } else if (operator) {
+                    const result = calculate();
+                    previousInput = result;
+                }
+
+                operator = nextOperator;
+                currentInput = '';
+            }
+
+            function calculate() {
+                let result = 0;
+                const previous = parseFloat(previousInput);
+                const current = parseFloat(currentInput);
+
+                if (isNaN(previous) || isNaN(current)) {
+                    return;
+                }
+
+                switch (operator) {
+                    case '+':
+                        result = previous + current;
+                        break;
+                    case '-':
+                        result = previous - current;
+                        break;
+                    case '*':
+                        result = previous * current;
+                        break;
+                    case '/':
+                        result = previous / current;
+                        break;
+                }
+
+                currentInput = `${result}`;
+                operator = '';
+                previousInput = '';
+
+                return result;
+            }
+
+            function clear() {
+                currentInput = '';
+                operator = '';
+                previousInput = '';
+            }
+
+            function inputNumber(number) {
+                currentInput = currentInput === '0' ? number : currentInput + number;
+            }
+
+            function inputDecimal(dot) {
+                if (!currentInput.includes(dot)) {
+                    currentInput += dot;
+                }
+            }
+
+            function updateScreen() {
+                screen.value = currentInput;
+            }
+        });
+    </script>
+</body>
+</html>

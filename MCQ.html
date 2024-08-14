@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiple Choice Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .quiz-container {
+            width: 600px;
+            margin: auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .timer {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .results {
+            display: none;
+        }
+        .correct-answer {
+            color: green;
+        }
+        .wrong-answer {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Multiple Choice Quiz</h1>
+        <div class="timer">Time left: <span id="timer">60</span> seconds</div>
+        <form id="quizForm">
+            <div class="question">
+                <p>1. What is the capital of France?</p>
+                <input type="radio" name="q1" value="a"> A) Berlin<br>
+                <input type="radio" name="q1" value="b"> B) Madrid<br>
+                <input type="radio" name="q1" value="c"> C) Paris<br>
+                <input type="radio" name="q1" value="d"> D) Rome<br>
+                <input type="text" id="answer1" class="answer" readonly>
+            </div>
+            <div class="question">
+                <p>2. Who wrote 'To Kill a Mockingbird'?</p>
+                <input type="radio" name="q2" value="a"> A) Harper Lee<br>
+                <input type="radio" name="q2" value="b"> B) J.K. Rowling<br>
+                <input type="radio" name="q2" value="c"> C) Ernest Hemingway<br>
+                <input type="radio" name="q2" value="d"> D) Mark Twain<br>
+                <input type="text" id="answer2" class="answer" readonly>
+            </div>
+            <div class="question">
+                <p>3. What is the smallest prime number?</p>
+                <input type="radio" name="q3" value="a"> A) 1<br>
+                <input type="radio" name="q3" value="b"> B) 2<br>
+                <input type="radio" name="q3" value="c"> C) 3<br>
+                <input type="radio" name="q3" value="d"> D) 5<br>
+                <input type="text" id="answer3" class="answer" readonly>
+            </div>
+            <div class="question">
+                <p>4. What is the chemical symbol for water?</p>
+                <input type="radio" name="q4" value="a"> A) H<br>
+                <input type="radio" name="q4" value="b"> B) O<br>
+                <input type="radio" name="q4" value="c"> C) H2O<br>
+                <input type="radio" name="q4" value="d"> D) CO2<br>
+                <input type="text" id="answer4" class="answer" readonly>
+            </div>
+            <div class="question">
+                <p>5. Who painted the Mona Lisa?</p>
+                <input type="radio" name="q5" value="a"> A) Vincent van Gogh<br>
+                <input type="radio" name="q5" value="b"> B) Pablo Picasso<br>
+                <input type="radio" name="q5" value="c"> C) Leonardo da Vinci<br>
+                <input type="radio" name="q5" value="d"> D) Claude Monet<br>
+                <input type="text" id="answer5" class="answer" readonly>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="results" class="results">
+            <h2>Your Score: <span id="score"></span>/5</h2>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'c',
+            q2: 'a',
+            q3: 'b',
+            q4: 'c',
+            q5: 'c'
+        };
+
+        function showCorrectAnswer(question, answerId, correctAnswer) {
+            const selectedAnswer = document.querySelector(`input[name=${question}]:checked`);
+            if (selectedAnswer) {
+                if (selectedAnswer.value !== correctAnswer) {
+                    alert(`Wrong answer for question ${question.slice(1)}. Correct answer is option ${correctAnswer.toUpperCase()}.`);
+                    document.getElementById(answerId).value = `Correct Answer: Option ${correctAnswer.toUpperCase()}`;
+                    document.getElementById(answerId).classList.add('wrong-answer');
+                } else {
+                    document.getElementById(answerId).value = `Correct!`;
+                    document.getElementById(answerId).classList.add('correct-answer');
+                }
+            } else {
+                alert(`You didn't answer question ${question.slice(1)}. Correct answer is option ${correctAnswer.toUpperCase()}.`);
+                document.getElementById(answerId).value = `Correct Answer: Option ${correctAnswer.toUpperCase()}`;
+                document.getElementById(answerId).classList.add('wrong-answer');
+            }
+        }
+
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            const interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    document.getElementById("quizForm").submit();
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            const oneMinute = 60 * 1,
+                display = document.querySelector('#timer');
+            startTimer(oneMinute, display);
+        };
+
+        document.getElementById('quizForm').onsubmit = function(event) {
+            event.preventDefault();
+
+            let score = 0;
+
+            for (let question in correctAnswers) {
+                showCorrectAnswer(question, `answer${question.slice(1)}`, correctAnswers[question]);
+                if (document.querySelector(`input[name=${question}]:checked`)?.value === correctAnswers[question]) {
+                    score++;
+                }
+            }
+
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('score').textContent = score;
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+            justify-content: center;
+            text-align: center;
+        }
+        h1{
+            font-size: 10em;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(0, 0, 0, 0.333));
+            margin-bottom: 25vh;
+        }
+        button{
+            width: 5em;
+            font-size: 3em;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin: 25px;
+        }
+        button:hover{
+            background-color: #868686;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(0, 0, 0, 0.333));
+        }
+    </style>
+</head>
+<body>
+    <H1 id="h1">Monday</H1>
+    <button class="btn" onclick="show()">Show</button>
+    <button class="btn" onclick="hide()">Hide</button>
+    <script>
+        function hide(){
+        document.getElementById("h1").style.display = "none";}
+        function show(){
+            document.getElementById("h1").style.display = "block";}
+        </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Alphabet Chart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            color: #01579b;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #alphabet {
+            border: 2px solid #01579b;
+            border-radius: 10px;
+        }
+
+        #example {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #0277bd;
+        }
+
+        #exampleImage {
+            margin-top: 20px;
+            max-width: 300px;
+            border: 2px solid #01579b;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Alphabet Chart</h1>
+    <img src="https://www.readingvine.com/wp-content/uploads/2023/08/ABC-Charts-Uppercase-Block-in-B_W-Image.jpg" usemap="#alphabetmap" alt="Alphabet Chart" id="alphabet">
+    
+    <map name="alphabetmap">
+        <!-- A -->
+        <area shape="rect" coords="10,10,50,50" href="#" onclick="showExample('A', 'apple.png')">
+        <!-- B -->
+        <area shape="rect" coords="60,10,100,50" href="#" onclick="showExample('B', 'ball.png')">
+        <!-- C -->
+        <area shape="rect" coords="110,10,150,50" href="#" onclick="showExample('C', 'cat.png')">
+        <!-- D -->
+        <area shape="rect" coords="160,10,200,50" href="#" onclick="showExample('D', 'dog.png')">
+        <!-- E -->
+        <area shape="rect" coords="210,10,250,50" href="#" onclick="showExample('E', 'elephant.png')">
+        <!-- F -->
+        <area shape="rect" coords="260,10,300,50" href="#" onclick="showExample('F', 'fish.png')">
+        <!-- G -->
+        <area shape="rect" coords="310,10,350,50" href="#" onclick="showExample('G', 'goat.png')">
+        <!-- H -->
+        <area shape="rect" coords="360,10,400,50" href="#" onclick="showExample('H', 'house.png')">
+        <!-- I -->
+        <area shape="rect" coords="410,10,450,50" href="#" onclick="showExample('I', 'igloo.png')">
+        <!-- J -->
+        <area shape="rect" coords="460,10,500,50" href="#" onclick="showExample('J', 'jackal.png')">
+        <!-- K -->
+        <area shape="rect" coords="510,10,550,50" href="#" onclick="showExample('K', 'kite.png')">
+        <!-- L -->
+        <area shape="rect" coords="560,10,600,50" href="#" onclick="showExample('L', 'lion.png')">
+        <!-- M -->
+        <area shape="rect" coords="610,10,650,50" href="#" onclick="showExample('M', 'mouse.png')">
+        <!-- N -->
+        <area shape="rect" coords="660,10,700,50" href="#" onclick="showExample('N', 'nest.png')">
+        <!-- O -->
+        <area shape="rect" coords="710,10,750,50" href="#" onclick="showExample('O', 'ocean.png')">
+        <!-- P -->
+        <area shape="rect" coords="760,10,800,50" href="#" onclick="showExample('P', 'penguin.png')">
+        <!-- Q -->
+        <area shape="rect" coords="810,10,850,50" href="#" onclick="showExample('Q', 'queen.png')">
+        <!-- R -->
+        <area shape="rect" coords="860,10,900,50" href="#" onclick="showExample('R', 'robot.png')">
+        <!-- S -->
+        <area shape="rect" coords="910,10,950,50" href="#" onclick="showExample('S', 'sun.png')">
+        <!-- T -->
+        <area shape="rect" coords="960,10,1000,50" href="#" onclick="showExample('T', 'tiger.png')">
+        <!-- U -->
+        <area shape="rect" coords="1010,10,1050,50" href="#" onclick="showExample('U', 'umbrella.png')">
+        <!-- V -->
+        <area shape="rect" coords="1060,10,1100,50" href="#" onclick="showExample('V', 'vase.png')">
+        <!-- W -->
+        <area shape="rect" coords="1110,10,1150,50" href="#" onclick="showExample('W', 'water.png')">
+        <!-- X -->
+        <area shape="rect" coords="1160,10,1200,50" href="#" onclick="showExample('X', 'x-ray.png')">
+        <!-- Y -->
+        <area shape="rect" coords="1210,10,1250,50" href="#" onclick="showExample('Y', 'yacht.png')">
+        <!-- Z -->
+        <area shape="rect" coords="1260,10,1300,50" href="#" onclick="showExample('Z', 'zebra.png')">
+    </map>
+    
+    <div id="example">Click on a letter to see an example.</div>
+    <img id="exampleImage" alt="Example Image">
+
+    <script>
+        function showExample(letter, image) {
+            document.getElementById('example').textContent = `${letter} is for ${image.split('.')[0]}`;
+            const exampleImage = document.getElementById('exampleImage');
+            exampleImage.src = image;
+            exampleImage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

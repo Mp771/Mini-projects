@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title Align="Center"> Sign Up Form  </title>
+    </head>
+    <body>
+        
+        <table border="2" bordercolor = "White" bgcolor ="Black" cellpadding ="3" cellspacing="5" align="center">
+        <form>
+            <th colspan="3" bgcolor="orange" > Sign-up </th>
+
+           <tr>
+            <td style="color: rgb(236, 240, 244)">First Name: </td>
+            <td colspan="2"><input type="text" name="firstname"></td>
+           </tr>
+
+           <tr>
+            <td style="color: rgb(236, 240, 244)">Last Name: </td>
+            <td colspan="2"><input type="text" name="lastname"></td>
+           </tr>
+
+           <tr>
+            <td style="color: rgb(236, 240, 244)"><label for="dob">Date of Birth:</label></td>
+               <td> <input type="date" id="dob" name="dob"> </td>
+           </tr>
+
+           <tr>
+            <td rowspan="1" style="color: rgb(236, 240, 244)" > Gender </td>
+           <labelfor="gender" Gender: </label>
+            <td colspan="2" style="color: rgb(236, 240, 244)"> <input type="radio" id="gender" name="gender" value="Male"/>Male
+                 <input type="radio" id="gender" name="gender" value="Female"/>Female </td>
+            </tr>
+
+            <tr>
+                <td style="color: rgb(236, 240, 244)"><label for="country"> Country: </label></td>
+                       <td colspan="2"><select id="textarea" name="Country">
+                        <option value="">Country</option>
+                        <option value="India">India</option>
+                        <option value="China">China</option>
+                        <option value="USA">USA</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        </select></td>
+            </tr>
+
+            <tr>
+                <td style="color: rgb(236, 240, 244)"><label for="email"> E-mail:</label></td>
+                 <td><input typ="email" id="email" name="email"></td>
+            </tr>
+
+            <tr>
+                <td style="color: rgb(236, 240, 244)"><label for="phone">Phone Number: </label></td>
+                   <td><input type="tel" id="phone" name="phone"></td>
+            </tr>
+
+            <tr>
+                <td style="color: rgb(236, 240, 244)"><br><label for="password"> Password:</td>
+                <td colspan="2"></label><input type="password" id="password" name="password"></td>
+           </tr>
+           
+           <tr>
+            <td style="color: rgb(236, 240, 244)"><label for="confirm_password">Confirm Password:</label></td>
+            <td><input type="password" id="confirm_password" name="confirm_password" required></td>
+            
+           </tr>
+
+           <tr>
+            <td colspan="2" align="right" style="color: rgb(242, 250, 126)"> <input type="checkbox" id="I agree to the terms of use" name="I agree to the terms of use" value="I agree to the terms of use"> <label for="I agree to the terms of use"> I agree to the terms of use </label></td>
+           </tr>
+
+           <tr>
+            <tfoot><td align="right" colspan="2" >
+                <input type="submit" value="submit">
+                <input type="reset" value="Cancel">
+            </td></tfoot>
+           </tr>

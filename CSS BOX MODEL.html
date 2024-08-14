@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model</title>
+    <style>
+        .container {
+            padding: 20px;
+            border: 50px solid #f2f478;
+            margin: 20px auto;
+            text-align: center;
+            width: 50%;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #46b4f8; 
+            color: #707e81; 
+            border: none;
+            text-align: center;
+            cursor: pointer;
+            transition-duration: 0.3s; 
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #2be6d6; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Box Model</h1>
+        <p>Helloooooo...</p>
+        
+        <button class="button" onclick="changeBackground()">Change Background</button>
+
+        <p id="dayOfWeek">Monday</p>
+
+        <button class="button" onclick="hideText()">Hide Me</button>
+        <button class="button" onclick="showText()">Show Me</button>
+    </div>
+
+    <script>
+        function changeBackground() {
+            document.body.style.backgroundColor = document.body.style.backgroundColor === 'lightblue' ? 'white' : 'lightblue';
+        }
+
+        function hideText() {
+            document.getElementById("dayOfWeek").style.display = "none";
+        }
+
+        function showText() {
+            document.getElementById("dayOfWeek").style.display = "block";
+        }
+    </script>
+</body>
+</html>

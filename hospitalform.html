@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hospital Registration Form</h1>
+    <form id="registrationForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <div class="error" id="nameError"></div>
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+            <div class="error" id="ageError"></div>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <div class="error" id="genderError"></div>
+        </div>
+        <div class="form-group">
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" required>
+            <div class="error" id="contactError"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error" id="emailError"></div>
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+            <div class="error" id="addressError"></div>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let isValid = true;
+
+            // Clear all error messages
+            document.querySelectorAll('.error').forEach(function(el) {
+                el.innerText = '';
+            });
+
+            // Name validation
+            const name = document.getElementById('name').value;
+            if (name.trim() === '') {
+                document.getElementById('nameError').innerText = 'Name is required';
+                isValid = false;
+            }
+
+            // Age validation
+            const age = document.getElementById('age').value;
+            if (age.trim() === '' || isNaN(age) || age <= 0) {
+                document.getElementById('ageError').innerText = 'Please enter a valid age';
+                isValid = false;
+            }
+
+            // Gender validation
+            const gender = document.getElementById('gender').value;
+            if (gender === '') {
+                document.getElementById('genderError').innerText = 'Gender is required';
+                isValid = false;
+            }
+
+            // Contact number validation
+            const contact = document.getElementById('contact').value;
+            const contactPattern = /^[0-9]{10}$/;
+            if (!contactPattern.test(contact)) {
+                document.getElementById('contactError').innerText = 'Please enter a valid 10-digit contact number';
+                isValid = false;
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').innerText = 'Please enter a valid email address';
+                isValid = false;
+            }
+
+            // Address validation
+            const address = document.getElementById('address').value;
+            if (address.trim() === '') {
+                document.getElementById('addressError').innerText = 'Address is required';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Registration successful!');
+                // Optionally, you can send the form data to the server here
+            }
+        });
+    </script>
+</body>
+</html>

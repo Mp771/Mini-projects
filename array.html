@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Input Example</title>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevents the form from submitting the traditional way
+
+            let name = document.getElementById("nameInput").value;
+            alert("Hello, " + name + "!");
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="handleFormSubmit(event)">
+        <label for="nameInput">Enter your name:</label>
+        <input type="text" id="nameInput" name="name">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
